@@ -5,20 +5,22 @@ import coco_exporter
 import main
 import os
 
-import datetime as dt
+#import datetime as dt
 import json
 import logging
-from typing import Any, Dict
+f#rom typing import Any, Dict
 
 from PIL import Image
 import requests
-from shapely import wkt
-from shapely.geometry import Polygon
+import urllib.request
 
-import pycocotools
-from pycocotools.coco import COCO
-from pycocotools.cocoeval import COCOeval
-from pycocotools import mask as maskUtils
+#from shapely import wkt
+#from shapely.geometry import Polygon
+
+#import pycocotools
+#from pycocotools.coco import COCO
+#from pycocotools.cocoeval import COCOeval
+#from pycocotools import mask as maskUtils
 
 LOGGER = logging.getLogger(__name__)
 
@@ -48,9 +50,9 @@ def download_images(file_input,path_output):
       url = item['Labeled Data']
 
       if os.path.exists(orig_path):
-        LOGGER.info("Item:",i," - NOT Downloading image   id: ",item['ID'])
+        print("Item:",i," - NOT Downloading image   id: ",item['ID'])
       else:
-        LOGGER.info("Item:",i," - Downloading image  with id: ",item['ID'], " to ",orig_path)
+        print("Item:",i," - Downloading image  with id: ",item['ID'], " to ",orig_path)
         urllib.request.urlretrieve(url,orig_path)
 
       #Load file as img
@@ -60,12 +62,12 @@ def download_images(file_input,path_output):
         if not (img.width == width and img.height == height):
           #If not resized, resize original again and resave
           img = Image.open(orig_path).convert('RGB')
-          LOGGER.info("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
+          print("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
           img_resize = img.resize((width, height), Image.ANTIALIAS)
           img_resize.save(final_path)
         else:
           #If resized and proper size, do not resize
-          LOGGER.info("Item:",i," - NOT resizing,  resized, id: ",item['ID'])
+          print("Item:",i," - NOT resizing,  resized, id: ",item['ID'])
       else:
         #If no resize exists, load original to resize
         img = Image.open(orig_path).convert('RGB')
@@ -75,7 +77,7 @@ def download_images(file_input,path_output):
           img_resize = img.resize((width, height), Image.ANTIALIAS)
           img_resize.save(final_path)
         else:
-          LOGGER.info("Item:",i," - NOT resizing, already right:",width,"x",height,"id: ",item['ID'])
+          print("Item:",i," - NOT resizing, already right:",width,"x",height,"id: ",item['ID'])
           img.save(final_path)
 
         ########## TODO: RESIZE MASKS ###########
