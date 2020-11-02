@@ -8,7 +8,7 @@ import os
 #import datetime as dt
 import json
 import logging
-f#rom typing import Any, Dict
+#from typing import Any, Dict
 
 from PIL import Image
 import requests
