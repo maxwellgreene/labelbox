@@ -48,7 +48,7 @@ if __name__ == '__main__':
     file_input = args.file_input
     assert file_input
 
-    file_output = args.file_output
+    path_output = args.file_output
     assert path_output
 
     to_download = args.file_output
