@@ -9,12 +9,24 @@ import coco_exporter
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
-def export(file_input, file_output):
+def export(file_input, path_output, to_download):
     "Uses COCO exporter function from_json to convert labelbox JSON into MS COCO format."
 
     try:
-        artifact = '{}/coco.json'.format(file_output)
-        os.makedirs(file_output, exist_ok=True)
+        artifact = '{}/coco.json'.format(path_output)
+        os.makedirs(path_output, exist_ok=True)
+
+        # ========== my changes ==========
+        if to_download:
+            LOGGER.info('Downloading images')
+
+            coco.downloader.download_images(path_output)
+
+            LOGGER.info('Finished downlaoding images')
+        else:
+             LOGGER.info('Not downlaoding images')
+        # ========== my changes ==========
+
         LOGGER.info('Creating coco export')
 
         coco_exporter.from_json(file_input, artifact)
@@ -27,8 +39,9 @@ def export(file_input, file_output):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('file_input', help='File path to Labelbox JSON to parse export')
-    parser.add_argument('file_output', help='File path to desired output directory for export asset')
+    parser.add_argument('file_input', help  ='File path to Labelbox JSON to parse export')
+    parser.add_argument('path_output', help ='File path to desired output directory for export asset')
+    parser.add_argument('to_download', help ='Boolean: whether to download to file output path')
 
     args = parser.parse_args()
 
@@ -36,6 +49,9 @@ if __name__ == '__main__':
     assert file_input
 
     file_output = args.file_output
-    assert file_output
+    assert path_output
 
-    export(file_input, file_output)
+    to_download = args.file_output
+    assert to_download
+
+    export(file_input, path_output, to_download)

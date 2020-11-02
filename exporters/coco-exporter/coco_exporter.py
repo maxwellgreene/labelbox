@@ -84,14 +84,16 @@ def add_label(
     Returns:
         The updated COCO export represented as a dictionary.
     """
+
     image = {
         "id": label_id,
-        "file_name": image_url,
+        "file_name": label_id + ".jpg",
         "license": None,
         "flickr_url": image_url,
         "coco_url": image_url,
         "date_captured": None,
     }
+
     response = requests.get(image_url, stream=True, timeout=10.0)
     response.raw.decode_content = True
     image['width'], image['height'] = Image.open(response.raw).size
