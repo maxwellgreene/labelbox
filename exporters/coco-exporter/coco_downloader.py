@@ -73,7 +73,7 @@ def download_images(file_input,path_output):
         img = Image.open(orig_path).convert('RGB')
         if not (img.width == width and img.height == height):
           #IF original is not proper size, resize.
-          LOGGER.info("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
+          print("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
           img_resize = img.resize((width, height), Image.ANTIALIAS)
           img_resize.save(final_path)
         else:
