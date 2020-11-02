@@ -39,7 +39,7 @@ def download_images(file_input,path_output):
     with open(file_input, 'r') as file_handle:
         data = json.loads(file_handle.read())
 
-    for i, item in enumerate(simple_data):
+    for i, item in enumerate(data):
       #Create path names
       orig_path = os.path.join(IMAGE_PATH,item['ID'] + "_original.jpg")
       final_path = os.path.join(IMAGE_PATH,item['ID'] + ".jpg")
