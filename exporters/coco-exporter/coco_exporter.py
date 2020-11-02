@@ -16,9 +16,7 @@ from exceptions import UnknownFormatError
 
 import coco_downloader
 
-
 LOGGER = logging.getLogger(__name__)
-
 
 def from_json(labeled_data, coco_output, label_format='XY'):
     "Writes labelbox JSON export into MS COCO format."

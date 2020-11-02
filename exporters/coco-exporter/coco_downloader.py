@@ -5,22 +5,12 @@ import coco_exporter
 import main
 import os
 
-#import datetime as dt
 import json
 import logging
-#from typing import Any, Dict
 
 from PIL import Image
 import requests
 import urllib.request
-
-#from shapely import wkt
-#from shapely.geometry import Polygon
-
-#import pycocotools
-#from pycocotools.coco import COCO
-#from pycocotools.cocoeval import COCOeval
-#from pycocotools import mask as maskUtils
 
 LOGGER = logging.getLogger(__name__)
 
