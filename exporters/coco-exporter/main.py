@@ -11,7 +11,6 @@ LOGGER = logging.getLogger(__name__)
 
 def export(file_input, file_output, to_download):
     "Uses COCO exporter function from_json to convert labelbox JSON into MS COCO format."
-    to_download = (to_download == "True")
     try:
         artifact = '{}/coco.json'.format(file_output)
         os.makedirs(file_output, exist_ok=True)
@@ -20,11 +19,11 @@ def export(file_input, file_output, to_download):
         if to_download:
             LOGGER.info('Downloading images')
 
-            coco.downloader.download_images(file_output)
+            coco_downloader.download_images(file_output)
 
             LOGGER.info('Finished downlaoding images')
         else:
-             LOGGER.info('Not downlaoding images')
+            LOGGER.info('Not downlaoding images')
         # ========== my changes ==========
 
         LOGGER.info('Creating coco export')

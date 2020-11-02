@@ -46,9 +46,9 @@ def download_images(file_input,path_output):
       url = item['Labeled Data']
 
       if os.path.exists(orig_path):
-        print("Item:",i," - NOT Downloading image   id: ",item['ID'])
+        LOGGER.info("Item:",i," - NOT Downloading image   id: ",item['ID'])
       else:
-        print("Item:",i," - Downloading image  with id: ",item['ID'], " to ",orig_path)
+        LOGGER.info("Item:",i," - Downloading image  with id: ",item['ID'], " to ",orig_path)
         urllib.request.urlretrieve(url,orig_path)
 
       #Load file as img
@@ -58,22 +58,22 @@ def download_images(file_input,path_output):
         if not (img.width == width and img.height == height):
           #If not resized, resize original again and resave
           img = Image.open(orig_path).convert('RGB')
-          print("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
+          LOGGER.info("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
           img_resize = img.resize((width, height), Image.ANTIALIAS)
           img_resize.save(final_path)
         else:
           #If resized and proper size, do not resize
-          print("Item:",i," - NOT resizing,  resized, id: ",item['ID'])
+          LOGGER.info("Item:",i," - NOT resizing,  resized, id: ",item['ID'])
       else:
         #If no resize exists, load original to resize
         img = Image.open(orig_path).convert('RGB')
         if not (img.width == width and img.height == height):
           #IF original is not proper size, resize.
-          print("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
+          LOGGER.info("Item:",i," - Resizing to",width,"x",height,"id: ",item['ID'])
           img_resize = img.resize((width, height), Image.ANTIALIAS)
           img_resize.save(final_path)
         else:
-          print("Item:",i," - NOT resizing, already right:",width,"x",height,"id: ",item['ID'])
+          LOGGER.info("Item:",i," - NOT resizing, already right:",width,"x",height,"id: ",item['ID'])
           img.save(final_path)
 
         ########## TODO: RESIZE MASKS ###########
