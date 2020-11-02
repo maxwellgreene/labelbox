@@ -11,7 +11,7 @@ LOGGER = logging.getLogger(__name__)
 
 def export(file_input, path_output, to_download):
     "Uses COCO exporter function from_json to convert labelbox JSON into MS COCO format."
-
+    to_download = (to_download == "True")
     try:
         artifact = '{}/coco.json'.format(path_output)
         os.makedirs(path_output, exist_ok=True)
