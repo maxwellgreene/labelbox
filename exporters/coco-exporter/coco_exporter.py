@@ -14,6 +14,8 @@ from shapely.geometry import Polygon
 
 from exceptions import UnknownFormatError
 
+import coco_downloader
+
 
 LOGGER = logging.getLogger(__name__)
 

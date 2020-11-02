@@ -2,6 +2,7 @@
 Module for downloading a local copy of a labelbox dataset from MS COCO format.
 """
 import coco_exporter
+import main
 
 import datetime as dt
 import json

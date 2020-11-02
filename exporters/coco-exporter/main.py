@@ -5,6 +5,7 @@ import logging
 import traceback as tb
 
 import coco_exporter
+import coco_downloader
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
