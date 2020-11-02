@@ -15,6 +15,7 @@ def export(file_input, file_output, to_download):
         artifact = '{}/coco.json'.format(file_output)
         os.makedirs(file_output, exist_ok=True)
 
+        print(to_download)
         # ========== my changes ==========
         if to_download:
             LOGGER.info('Downloading images')
